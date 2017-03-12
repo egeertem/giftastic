@@ -116,7 +116,8 @@ $(document).ready(function(){
            function alertGifName() {
 
         var gif = $(this).attr("data-name");
-        var queryURL = "http://api.giphy.com/v1/gifs/search?q="+"animal" +"limit=10"+"&api_key=dc6zaTOxFJmzC"; 
+        var queryURL = "http://api.giphy.com/v1/gifs/search?q="+"gif"+"&api_key=dc6zaTOxFJmzC" ;
+        
         
 
         $.ajax({
@@ -124,11 +125,21 @@ $(document).ready(function(){
           method: "GET"
         }).done(function(response) {
           
-          var imageUrl = response.data;
+          var imageUrl = response.data.images;
 
-           $("#first_row").html(JSON.stringify(imageUrl));
-          
-          console.log(imageUrl);
+
+        //   $("#first_row").html(JSON.stringify(imageUrl));
+       
+         var gifImage = $ ("<img>");
+
+         gifImage.attr("src", imageUrl);
+         gifImage.attr("alt", "gif image");
+
+         $("#gifs_view2").prepend(gifImage);
+
+
+         // console.log (response.data.array[0].bitly_gif_url);
+           console.log(imageUrl);
           //console.log(response);
           // console.log(queryURL);
           renderButtons();
